@@ -1,14 +1,11 @@
 import os
 from music_tag import load_file
-import pandas as pd
 
 # 指定待处理的文件夹路径
 folder_path = input("Please enter folder path: ")
 print(folder_path)
 folder_path = f'{folder_path}'
-# folder_path=r'E:\test'
 audio_type_list = ['.wav','.mp3','.flac','.m4a']
-# list_data = pd.DataFrame(columns=['Artist','Album','Tracknumber','Title','Year'])
 
 def check_combied_name(one_data,input_value):
     global separator
@@ -103,11 +100,6 @@ for filename in os.listdir(folder_path):
         
         audio = load_file(file_path)
 
-        # # 打印当前标签信息
-        # print("Title:", audio['title'])
-        # print("Artist:", audio['artist'])
-        # print("Album:", audio['album'])
-
         # 修改标签信息
         audio['artist'] = new_artist
         audio['album'] = new_album
@@ -118,20 +110,5 @@ for filename in os.listdir(folder_path):
         # 保存修改后的标签信息
         audio.save()
         runtime+=1
-
-        # # 重新加载文件并打印修改后的信息
-        # audio = load_file(file_path)
-        # print("Modified Title:", audio['title'])
-
-        # file_data = pd.DataFrame.from_dict([{
-        #     'Artist':new_artist,
-        #     'Album':new_album,
-        #     'Tracknumber':new_tracknumber,
-        #     'Title':new_title,
-        #     'Year':new_album_year
-        #     }])
-        # list_data = pd.concat([list_data,file_data],ignore_index=True)
-        
-# print(list_data)
 
 input("标签信息已更新完成。回车关闭")
